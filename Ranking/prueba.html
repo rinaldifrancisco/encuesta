@@ -79,71 +79,50 @@
   <main class="main-content" id="profesores"></main>
 
   <script>
-    // 1. Docentes y rutas correctas (acá no pongas rutas locales de tu PC)
-    const docentes = [
-      {
-        nombre: "ABRAHAM CLAUDIA CRISTINA",
-        materia: "Administración",
-        rating: 4.5,
-        imgUrl: "C:\Users\rinal\Desktop\Archivos Confidenciales\pagina\eco.png"
-      },
-      {
-        nombre: "ALPA VIRGINIA ELISABET",
-        materia: "Matemática I",
-        rating: 4.0,
-        imgUrl: "fotos_profesores/ALPA_VIRGINIA_ELISABET.jpg"
-      },
-      {
-        nombre: "ALVAREZ MARIA BELEN",
-        materia: "Administración",
-        rating: 3.8,
-        imgUrl: "fotos_profesores/ALVAREZ_MARIA_BELEN.jpg"
+     function generarEstrellas(puntaje) {
+        const entero = Math.floor(puntaje);
+        const decimal = puntaje - entero;
+        let estrellas = "";
+        for (let i = 0; i < entero; i++) estrellas += "★";
+        if (decimal >= 0.5 && entero < 5) estrellas += "☆";
+        while (estrellas.length < 5) estrellas += "☆";
+        return estrellas;
       }
-      // ...el resto...
-    ];
 
-    function generarEstrellas(puntaje) {
-      const entero = Math.floor(puntaje);
-      const decimal = puntaje - entero;
-      let estrellas = "";
-      for (let i = 0; i < entero; i++) estrellas += "★";
-      if (decimal >= 0.5 && entero < 5) estrellas += "☆";
-      while (estrellas.length < 5) estrellas += "☆";
-      return estrellas;
-    }
+     const contenedor = document.getElementById("profesores");
+     fetch('profesores_info_with_photos.json')
+       .then(resp => resp.json())
+       .then(docentes => {
+         docentes.forEach(doc => {
+           const card = document.createElement("div");
+           card.className = "prof-card";
 
-    const contenedor = document.getElementById("profesores");
-    docentes.forEach(doc => {
-      // Card
-      const card = document.createElement("div");
-      card.className = "prof-card";
+           const img = document.createElement("img");
+           img.className = "prof-img";
+           img.src = doc.foto_url;
+           img.alt = doc.nombre;
+           img.onerror = () => {
+             img.src = "https://via.placeholder.com/120x120?text=Sin+Foto";
+           };
 
-      // Imagen circular (acá usamos <img> para debuggear)
-      const img = document.createElement("img");
-      img.className = "prof-img";
-      img.src = doc.imgUrl;
-      img.alt = doc.nombre;
-      // Si falla la imagen, pone una de placeholder
-      img.onerror = () => {
-        img.src = "https://via.placeholder.com/120x120?text=Sin+Foto";
-      };
+           const info = document.createElement("div");
+           info.className = "prof-info";
+           info.innerHTML = `
+             <h3>${doc.nombre}</h3>
+             <p class="materia">${doc.materia}</p>
+             <div class="rating-stars">
+               ${generarEstrellas(0).split('').map(s => `<span class="star">${s}</span>`).join('')}
+             </div>
+             <button>Ver Perfil</button>
+           `;
 
-      // Info
-      const info = document.createElement("div");
-      info.className = "prof-info";
-      info.innerHTML = `
-        <h3>${doc.nombre}</h3>
-        <p class="materia">${doc.materia}</p>
-        <div class="rating-stars">
-          ${generarEstrellas(doc.rating).split('').map(s => `<span class="star">${s}</span>`).join('')}
-        </div>
-        <button>Ver Perfil</button>
-      `;
+           card.appendChild(img);
+           card.appendChild(info);
+           contenedor.appendChild(card);
+         });
+       })
+       .catch(err => console.error('Error cargando docentes:', err));
 
-      card.appendChild(img);
-      card.appendChild(info);
-      contenedor.appendChild(card);
-    });
-  </script>
+   </script>
 </body>
 </html>

@@ -394,381 +394,26 @@
     // Menú móvil toggle
     const menuToggle = document.getElementById('menuToggle');
     const navList = document.getElementById('navList');
-    menuToggle.addEventListener('click', () => {
-      navList.classList.toggle('open');
-    });
+      menuToggle.addEventListener('click', () => {
+        navList.classList.toggle('open');
+      });
 
-    // === 1. Array con todos los docentes del Excel (rating = 0.0 por defecto) ===
-    const docentes = [
-  { 
-    nombre: "ABRAHAM CLAUDIA CRISTINA", 
-    materia: "Administración", 
-    rating: 0.0, 
-    imgUrl: "C:\Users\rinal\Desktop\Archivos Confidenciales\ranking\Fotos profesores\ABRAHAM CLAUDIA CRISTINA.jpg"
-      },
-      { 
-        nombre: "ALPA VIRGINIA ELISABET", 
-        materia: "Matemática I", 
-        rating: 0.0, 
-        imgUrl: "Fotos profesores\ABRAHAM CLAUDIA CRISTINA.jpg" 
-      },
-      { 
-        nombre: "ALVAREZ MARIA BELEN", 
-        materia: "Administración", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/ALVAREZ MARIA BELEN.jpg" 
-      },
-      { 
-        nombre: "BASSINI TELLO GUIDO", 
-        materia: "Taller de Herramientas Informáticas", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/BASSINI TELLO GUIDO.jpg" 
-      },
-      { 
-        nombre: "BAZTERRICA VERÓNICA", 
-        materia: "Introducción a la Economía", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/BAZTERRICA VERÓNICA.jpg" 
-      },
-      { 
-        nombre: "BILBAO LUCIANA MACARENA", 
-        materia: "Introducción a la Economía", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/BILBAO LUCIANA MACARENA.jpg" 
-      },
-      { 
-        nombre: "CAGIGAS LUCIANO ANDRÉS", 
-        materia: "Introducción a la Economía", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/CAGIGAS LUCIANO ANDRÉS.jpg" 
-      },
-      { 
-        nombre: "CALVENTO JUAN", 
-        materia: "Taller de Herramientas Informáticas", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/CALVENTO JUAN.jpg" 
-      },
-      { 
-        nombre: "CARATTOLI MARIELA", 
-        materia: "Administración", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/CARATTOLI MARIELA.jpg" 
-      },
-      { 
-        nombre: "CASCO MIRIAM MARÍA ROSA", 
-        materia: "Taller Habilidades I", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/CASCO MIRIAM MARÍA ROSA.jpg" 
-      },
-      { 
-        nombre: "COLELLO LORENA", 
-        materia: "Taller Habilidades I", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/COLELLO LORENA.jpg" 
-      },
-      { 
-        nombre: "CORRAL SILVIA", 
-        materia: "Administración", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/CORRAL SILVIA.jpg" 
-      },
-      { 
-        nombre: "DABIDOS MERCEDES", 
-        materia: "Derecho Público", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/DABIDOS MERCEDES.jpg" 
-      },
-      { 
-        nombre: "DE LORENZO LUCIA", 
-        materia: "Introducción a la Economía", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/DE LORENZO LUCIA.jpg" 
-      },
-      { 
-        nombre: "DE VITO MARIA FLORENCIA", 
-        materia: "Matemática I", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/DE VITO MARIA FLORENCIA.jpg" 
-      },
-      { 
-        nombre: "DELGADO MAGALI LEDY", 
-        materia: "Historia Económica", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/DELGADO MAGALI LEDY.jpg" 
-      },
-      { 
-        nombre: "DOMINGUEZ GRACIELA", 
-        materia: "Derecho Público", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/DOMINGUEZ GRACIELA.jpg" 
-      },
-      { 
-        nombre: "DOS REIS MARIA ROSA", 
-        materia: "Estadística, Taller de Herramientas Informáticas", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/DOS REIS MARIA ROSA.jpg" 
-      },
-      { 
-        nombre: "DRUETTO LAURA C.", 
-        materia: "Matemática I", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/DRUETTO LAURA C..jpg" 
-      },
-      { 
-        nombre: "ECHARRI ANA MARIA", 
-        materia: "Contabilidad Básica", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/ECHARRI ANA MARIA.jpg" 
-      },
-      { 
-        nombre: "ETCHEVERRIA SILVINA GRACIELA", 
-        materia: "Estadística", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/ETCHEVERRIA SILVINA GRACIELA.jpg" 
-      },
-      { 
-        nombre: "GARCIA ITHURRART MARIANO", 
-        materia: "Administración", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/GARCIA ITHURRART MARIANO.jpg" 
-      },
-      { 
-        nombre: "GERINGER MARIA VALERIA", 
-        materia: "Contabilidad Básica", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/GERINGER MARIA VALERIA.jpg" 
-      },
-      { 
-        nombre: "GUTIERREZ SERGIO GUSTAVO", 
-        materia: "Introducción a la Economía", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/GUTIERREZ SERGIO GUSTAVO.jpg" 
-      },
-      { 
-        nombre: "ISERN ANDREA NATALIA", 
-        materia: "Taller Habilidades I", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/ISERN ANDREA NATALIA.jpg" 
-      },
-      { 
-        nombre: "LA BARBERA FIORELLA ESTEFANIA", 
-        materia: "Contabilidad Básica", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/LA BARBERA FIORELLA ESTEFANIA.jpg" 
-      },
-      { 
-        nombre: "LAFOURCADE PAULA", 
-        materia: "Derecho Público", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/LAFOURCADE PAULA.jpg" 
-      },
-      { 
-        nombre: "LIEVORE LEANDRO EZEQUIEL", 
-        materia: "Estadística", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/LIEVORE LEANDRO EZEQUIEL.jpg" 
-      },
-      { 
-        nombre: "LOPEZ MADINA PATRICIO DAVID", 
-        materia: "Contabilidad Básica", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/LOPEZ MADINA PATRICIO DAVID.jpg" 
-      },
-      { 
-        nombre: "LORENZO MARÍA NATALIA", 
-        materia: "Administración", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/LORENZO MARÍA NATALIA.jpg" 
-      },
-      { 
-        nombre: "MARTINEFSKI MARIA INES", 
-        materia: "Contabilidad Básica", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/MARTINEFSKI MARIA INES.jpg" 
-      },
-      { 
-        nombre: "MARZORATTI MAURO", 
-        materia: "Derecho Público", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/MARZORATTI MAURO.jpg" 
-      },
-      { 
-        nombre: "MAUHOURAT MAGDALENA", 
-        materia: "Derecho Público", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/MAUHOURAT MAGDALENA.jpg" 
-      },
-      { 
-        nombre: "MONDRAGON SILVINA ANDREA", 
-        materia: "Historia Económica", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/MONDRAGON SILVINA ANDREA.jpg" 
-      },
-      { 
-        nombre: "MONTELEONI JOSE IGNACIO", 
-        materia: "Taller de Herramientas Informáticas", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/MONTELEONI JOSE IGNACIO.jpg" 
-      },
-      { 
-        nombre: "MORANDO CARINA", 
-        materia: "Matemática I", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/MORANDO CARINA.jpg" 
-      },
-      { 
-        nombre: "MORENO MARIA MERCEDES", 
-        materia: "Administración", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/MORENO MARIA MERCEDES.jpg" 
-      },
-      { 
-        nombre: "MUSANTE GABRIELA SOLEDAD", 
-        materia: "Matemática I", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/MUSANTE GABRIELA SOLEDAD.jpg" 
-      },
-      { 
-        nombre: "NATALE MAURO", 
-        materia: "Matemática I", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/NATALE MAURO.jpg" 
-      },
-      { 
-        nombre: "PASUCCI JOSE ALBERTO", 
-        materia: "Historia Económica", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/PASUCCI JOSE ALBERTO.jpg" 
-      },
-      { 
-        nombre: "PAZOS CECILIA ADRIANA", 
-        materia: "Derecho Público", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/PAZOS CECILIA ADRIANA.jpg" 
-      },
-      { 
-        nombre: "PELIZZARDI FLAVIA PAOLA", 
-        materia: "Estadística", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/PELIZZARDI FLAVIA PAOLA.jpg" 
-      },
-      { 
-        nombre: "PEREZ CHIOZZA RAMIRO", 
-        materia: "Taller de Herramientas Informáticas", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/PEREZ CHIOZZA RAMIRO.jpg" 
-      },
-      { 
-        nombre: "PICABEA AGUSTIN", 
-        materia: "Introducción a la Economía", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/PICABEA AGUSTIN.jpg" 
-      },
-      { 
-        nombre: "PITTALUGA PATRICIO", 
-        materia: "Historia Económica", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/PITTALUGA PATRICIO.jpg" 
-      },
-      { 
-        nombre: "PROVASI MARCOS RAUL", 
-        materia: "Contabilidad Básica", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/PROVASI MARCOS RAUL.jpg" 
-      },
-      { 
-        nombre: "REBORI MARCELO ADRIAN", 
-        materia: "Administración", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/REBORI MARCELO ADRIAN.jpg" 
-      },
-      { 
-        nombre: "RINALDI EDUARDO", 
-        materia: "Estadística", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/RINALDI EDUARDO.jpg" 
-      },
-      { 
-        nombre: "RODRIGUEZ RIVERO GENARO", 
-        materia: "Contabilidad Básica", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/RODRIGUEZ RIVERO GENARO.jpg" 
-      },
-      { 
-        nombre: "RUSSO ALEJANDRA", 
-        materia: "Taller Habilidades I", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/RUSSO ALEJANDRA.jpg" 
-      },
-      { 
-        nombre: "SANTAMARINA DELFINA", 
-        materia: "Estadística", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/SANTAMARINA DELFINA.jpg" 
-      },
-      { 
-        nombre: "SANTIAGO MATIAS", 
-        materia: "Contabilidad Básica", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/SANTIAGO MATIAS.jpg" 
-      },
-      { 
-        nombre: "SARACCA ARIEL ANDRES", 
-        materia: "Historia Económica", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/SARACCA ARIEL ANDRES.jpg" 
-      },
-      { 
-        nombre: "SEFFINO MARIO DANIEL", 
-        materia: "Estadística", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/SEFFINO MARIO DANIEL.jpg" 
-      },
-      { 
-        nombre: "SIMARO JORGE DANIEL", 
-        materia: "Contabilidad Básica", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/SIMARO JORGE DANIEL.jpg" 
-      },
-      { 
-        nombre: "TONELLI OMAR EDGARDO", 
-        materia: "Contabilidad Básica", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/TONELLI OMAR EDGARDO.jpg" 
-      },
-      { 
-        nombre: "VIERA MARIA INÉS", 
-        materia: "Contabilidad Básica", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/VIERA MARIA INÉS.jpg" 
-      },
-      { 
-        nombre: "VILLARREAL MARIA BELÉN", 
-        materia: "Matemática I", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/VILLARREAL MARIA BELÉN.jpg" 
-      },
-      { 
-        nombre: "VINSENNAU LAUTARO DANIEL", 
-        materia: "Administración", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/VINSENNAU LAUTARO DANIEL.jpg" 
-      },
-      { 
-        nombre: "ZARINI PEDRO CARLOS", 
-        materia: "Historia Económica", 
-        rating: 0.0, 
-        imgUrl: "C:\Users\rinal\Desktop\Archivos Confidenciales\pagina\eco.png" 
-      },
-      { 
-        nombre: "ZUBELDIA MARTÍN", 
-        materia: "Derecho Público", 
-        rating: 0.0, 
-        imgUrl: "Fotos_profesores/ZUBELDIA MARTÍN.jpg" 
-      }
-    ];
+      // === 1. Cargar docentes desde el archivo JSON ===
+      let docentes = [];
+      fetch('profesores_info_with_photos.json')
+        .then(resp => resp.json())
+        .then(data => {
+          docentes = data.map(d => ({
+            nombre: d.nombre,
+            materia: d.materia,
+            rating: 0.0,
+            imgUrl: d.foto_url
+          }));
+          renderDocentes();
+        })
+        .catch(err => console.error('Error cargando docentes:', err));
 
-    // === 2. Función para convertir valor numérico de rating a estrellas ★☆☆☆☆ ===
+      // === 2. Función para convertir valor numérico de rating a estrellas ★☆☆☆☆ ===
     function generarEstrellas(puntaje) {
       const entero = Math.floor(puntaje);
       const decimal = puntaje - entero;
@@ -789,78 +434,66 @@
       return estrellas;
     }
 
-    // === 3. Iterar sobre el array e insertar cada tarjeta en el DOM ===
-    const contenedor = document.getElementById("profesores");
+    function renderDocentes() {
+      const contenedor = document.getElementById("profesores");
+      contenedor.innerHTML = "";
+      docentes.forEach(doc => {
+        const card = document.createElement("div");
+        card.classList.add("prof-card");
+        card.setAttribute("data-name", doc.nombre);
+        card.setAttribute("data-subject", doc.materia);
+        card.setAttribute("data-rating", doc.rating);
 
-    docentes.forEach(doc => {
-      // Crear el elemento principal <div class="prof-card" ...>
-      const card = document.createElement("div");
-      card.classList.add("prof-card");
-      card.setAttribute("data-name", doc.nombre);
-      card.setAttribute("data-subject", doc.materia);
-      card.setAttribute("data-rating", doc.rating);
+        const imgDiv = document.createElement("div");
+        imgDiv.classList.add("prof-img");
+        imgDiv.style.backgroundImage = `url('${doc.imgUrl}'), url('https://via.placeholder.com/120x120?text=Sin+Foto')`;
+        imgDiv.style.backgroundSize = 'cover';
+        imgDiv.style.backgroundPosition = 'center';
 
-      // Imagen de fondo con fallback y log para debug
-console.log("Cargando imagen para", doc.nombre, ":", doc.imgUrl);
+        const infoDiv = document.createElement("div");
+        infoDiv.classList.add("prof-info");
 
-const imgDiv = document.createElement("div");
-imgDiv.classList.add("prof-img");
-// Pone la imagen principal y si no carga, un placeholder
-imgDiv.style.backgroundImage = `url('${doc.imgUrl}'), url('https://via.placeholder.com/120x120?text=Sin+Foto')`;
-imgDiv.style.backgroundSize = 'cover';
-imgDiv.style.backgroundPosition = 'center';
+        const nombreElem = document.createElement("h3");
+        nombreElem.textContent = doc.nombre;
 
+        const materiaElem = document.createElement("p");
+        materiaElem.classList.add("materia");
+        materiaElem.textContent = doc.materia;
 
-      // Contenedor interno de los datos
-      const infoDiv = document.createElement("div");
-      infoDiv.classList.add("prof-info");
+        const ratingDiv = document.createElement("div");
+        ratingDiv.classList.add("rating");
 
-      // Nombre del docente
-      const nombreElem = document.createElement("h3");
-      nombreElem.textContent = doc.nombre;
+        const estrellasDiv = document.createElement("div");
+        estrellasDiv.classList.add("rating-stars");
+        const estrellasTexto = generarEstrellas(doc.rating);
+        estrellasTexto.split("").forEach(c => {
+          const span = document.createElement("span");
+          span.classList.add("star");
+          span.textContent = c;
+          estrellasDiv.appendChild(span);
+        });
 
-      // Materia
-      const materiaElem = document.createElement("p");
-      materiaElem.classList.add("materia");
-      materiaElem.textContent = doc.materia;
+        const numeroRating = document.createElement("span");
+        numeroRating.textContent = doc.rating.toFixed(1);
 
-      // Bloque de rating (estrellas + número)
-      const ratingDiv = document.createElement("div");
-      ratingDiv.classList.add("rating");
+        ratingDiv.appendChild(estrellasDiv);
+        ratingDiv.appendChild(numeroRating);
 
-      const estrellasDiv = document.createElement("div");
-      estrellasDiv.classList.add("rating-stars");
-      const estrellasTexto = generarEstrellas(doc.rating);
-      estrellasTexto.split("").forEach(c => {
-        const span = document.createElement("span");
-        span.classList.add("star");
-        span.textContent = c;
-        estrellasDiv.appendChild(span);
+        const boton = document.createElement("button");
+        boton.classList.add("viewProfileBtn");
+        boton.textContent = "Ver Perfil";
+
+        infoDiv.appendChild(nombreElem);
+        infoDiv.appendChild(materiaElem);
+        infoDiv.appendChild(ratingDiv);
+        infoDiv.appendChild(boton);
+
+        card.appendChild(imgDiv);
+        card.appendChild(infoDiv);
+
+        contenedor.appendChild(card);
       });
-
-      const numeroRating = document.createElement("span");
-      numeroRating.textContent = doc.rating.toFixed(1);
-
-      ratingDiv.appendChild(estrellasDiv);
-      ratingDiv.appendChild(numeroRating);
-
-      // Botón “Ver Perfil”
-      const boton = document.createElement("button");
-      boton.classList.add("viewProfileBtn");
-      boton.textContent = "Ver Perfil";
-
-      // Estructura final: anidar todos los elementos dentro de infoDiv y luego en card
-      infoDiv.appendChild(nombreElem);
-      infoDiv.appendChild(materiaElem);
-      infoDiv.appendChild(ratingDiv);
-      infoDiv.appendChild(boton);
-
-      card.appendChild(imgDiv);
-      card.appendChild(infoDiv);
-
-      // Insertar la tarjeta completa en el contenedor del body
-      contenedor.appendChild(card);
-    });
+    }
 
     // Filtros de búsqueda y materia
     const searchInput = document.getElementById('searchInput');
