@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ranking de Profesores</title>
+  
+  <!-- Fuente desde Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  
+   <style>
+    /* ===========================
+       Estilos Base y Reset
+    =========================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+     /* ===========================
+       Header y Navegación
+    =========================== */
+    header {
+      background: linear-gradient(135deg, #1a73e8 0%, #2b57d0 100%);
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* Menú horizontal (desktop) */
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
+    nav ul li a {
+      color: #fff;
+      font-weight: 500;
+      padding: 6px 8px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    nav ul li a:hover {
+      background: rgba(255,255,255,0.15);
+    }
+    }
+    /* ===========================
+       Header
+    =========================== */
+    header {
+      background: linear-gradient(135deg, #1a73e8 0%, #2b57d0 100%);
+      color: #fff;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: #fff;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    nav ul li a:hover {
+      opacity: 0.8;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ===========================
+       Barra de búsqueda / filtros
+    =========================== */
+    .filters-container {
+      margin: 20px auto;
+      max-width: 1000px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    .search-container {
+      flex: 2;
+      display: flex;
+      gap: 10px;
+    }
+    .search-container input[type="text"] {
+      flex: 1;
+      padding: 10px 15px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+    .search-container input[type="text"]:focus {
+      outline: none;
+      border-color: #1a73e8;
+    }
+    .search-container button {
+      padding: 0 20px;
+      background: #1a73e8;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .search-container button:hover {
+      background: #155ab3;
+    }
+    .filter-select {
+      flex: 1;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      background: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .filter-select:focus {
+      outline: none;
+      border-color: #1a73e8;
+    }
+
+    /* ===========================
+       Estilos para móviles (< 768px)
+    =========================== */
+    @media (max-width: 100px) {
+      .header-content {
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+      /* Mostrar botón hamburguesa */
+      .menu-toggle {
+        display: block;
+      }
+      /* Ocultar menú horizontal */
+      nav ul {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        background: #1a73e8;
+        position: absolute;
+        top: 56px; /* altura del header */
+        right: 0;
+        width: 100%;
+        border-top: 1px solid rgba(255,255,255,0.2);
+      }
+      /* Cada enlace ocupa todo el ancho en vertical */
+      nav ul li {
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+      }
+      nav ul li a {
+        display: block;
+        padding: 14px 20px;
+      }
+      /* Cuando tenga la clase .open, se muestra el menú */
+      nav ul.open {
+        display: flex;
+      }
+    }
+
+    /* ===========================
+       Barra de búsqueda / filtros
+    =========================== */
+    .filters-container {
+      margin: 20px auto;
+      max-width: 1000px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    .search-container {
+      flex: 2;
+      display: flex;
+      gap: 10px;
+    }
+    .search-container input[type="text"] {
+      flex: 1;
+      padding: 10px 15px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+    .search-container input[type="text"]:focus {
+      outline: none;
+      border-color: #1a73e8;
+    }
+    .search-container button {
+      padding: 0 20px;
+      background: #1a73e8;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .search-container button:hover { background: #155ab3; }
+    .filter-select {
+      flex: 1;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      background: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .filter-select:focus { outline: none; border-color: #1a73e8; }
+
+    /* ===========================
+       Tabla de profesores
+    =========================== */
+    .table-container {
+      flex: 1;
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+    }
+    thead { background: #1a73e8; color: #fff; }
+    tbody tr:nth-child(even) { background: #f0f2f5; }
+    th { font-weight: 600; }
+    .viewBtn {
+      padding: 6px 12px;
+      background: #2b57d0;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-size: 0.9rem;
+    }
+    .viewBtn:hover { background: #1a3bb0; }
+
+    /* ===========================
+       Modal Perfil
+    =========================== */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+    }
+    .modal-content {
+      background: #fff;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      padding: 20px;
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #555;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===========================
+       Footer
+    =========================== */
+    footer {
+      background: #1f2937;
+      color: #aaa;
+      text-align: center;
+      padding: 15px 20px;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+    footer a { color: #fff; font-weight: 500; margin: 0 5px; }
+
+    /* ===========================
+       Media Queries
+    =========================== */
+    @media (max-width: 800px) {
+      .filters-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .search-container, .filter-select { width: 100%; }
+    }
+    @media (max-width: 600px) {
+      header, .filters-container { padding: 15px 20px; }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background: #1a73e8;
+        position: absolute;
+        top: 60px;
+        right: 40px;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      nav ul.open { display: flex; }
+      .menu-toggle { display: block; color: #fff; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======= HEADER ======= -->
+  <header>
+    <div class="header-content">
+      <div class="logo">📚 CECE Ranking</div>
+      <div class="menu-toggle" id="menuToggle">☰</div>
+      <nav>
+        <ul id="navList">
+          <li><a href="C:\Users\rinal\Desktop\Archivos Confidenciales\ranking\Ranking\index.html">Inicio</a></li>
+          <li><a href="C:\Users\rinal\Desktop\Archivos Confidenciales\ranking\Ranking\ranking.html">Ranking de profesores</a></li>
+          <li><a href="C:\Users\rinal\Desktop\Archivos Confidenciales\ranking\Ranking\ranking2.html">Ranking de comisiones</a></li>
+          <li><a href="#contactSection">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======= BARRA DE BÚSQUEDA Y FILTROS ======= -->
+  <section class="filters-container">
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Buscar profesor..." />
+      <button id="searchBtn">Buscar</button>
+    </div>
+    <select id="subjectFilter" class="filter-select">
+      <option value="">Todas las materias</option>
+      <option value="Administración">Administración</option>
+      <option value="Contabilidad Básica">Contabilidad Básica</option>
+      <option value="Historia Económica">Historia Económica</option>
+      <option value="Instituciones de Derecho Público">Instituciones de Derecho Público</option>
+      <option value="Introducción a la Economía">Introducción a la Economía</option>
+      <option value="Matemática I">Matemática I</option>
+      <option value="Estadística">Estadística</option>
+      <option value="Taller de Desarrollo de Habilidades I">Taller de Desarrollo de Habilidades I</option>
+      <option value="Taller de Desarrollo de Habilidades II">Taller de Desarrollo de Habilidades II</option>
+      <option value="Taller de Herramientas Informáticas">Taller de Herramientas Informáticas</option>
+    </select>
+    <select id="ratingSort" class="filter-select">
+      <option value="">Ordenar por</option>
+      <option value="desc">Mejor calificados</option>
+      <option value="asc">Menos calificados</option>
+    </select>
+  </section>
+
+  <!-- ======= TABLA DE PROFESORES ======= -->
+  <section id="rankingSection" class="table-container">
+    <table id="profTable">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Materias</th>
+          <th>Calificación</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 61 filas ficticias -->
+        <tr data-name="Ana García" data-subject="Administración" data-rating="4.2">
+          <td>Ana García</td>
+          <td>Administración</td>
+          <td>4.2</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Bruno López" data-subject="Contabilidad Básica" data-rating="3.8">
+          <td>Bruno López</td>
+          <td>Contabilidad Básica</td>
+          <td>3.8</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Carla Martínez" data-subject="Matemática I" data-rating="4.5">
+          <td>Carla Martínez</td>
+          <td>Matemática I</td>
+          <td>4.5</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Diego Fernández" data-subject="Taller de Herramientas Informáticas" data-rating="4.0">
+          <td>Diego Fernández</td>
+          <td>Taller de Herramientas Informáticas</td>
+          <td>4.0</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Elena Ruiz" data-subject="Introducción a la Economía" data-rating="3.9">
+          <td>Elena Ruiz</td>
+          <td>Introducción a la Economía</td>
+          <td>3.9</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Francisco Díaz" data-subject="Economía Política" data-rating="4.1">
+          <td>Francisco Díaz</td>
+          <td>Economía Política</td>
+          <td>4.1</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Gabriela Torres" data-subject="Administración" data-rating="4.3">
+          <td>Gabriela Torres</td>
+          <td>Administración</td>
+          <td>4.3</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Hugo Morales" data-subject="Contabilidad Básica" data-rating="3.7">
+          <td>Hugo Morales</td>
+          <td>Contabilidad Básica</td>
+          <td>3.7</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Isabel Sánchez" data-subject="Matemática I" data-rating="4.4">
+          <td>Isabel Sánchez</td>
+          <td>Matemática I</td>
+          <td>4.4</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Javier Castro" data-subject="Taller de Herramientas Informáticas" data-rating="3.9">
+          <td>Javier Castro</td>
+          <td>Taller de Herramientas Informáticas</td>
+          <td>3.9</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Karina Vega" data-subject="Introducción a la Economía" data-rating="4.0">
+          <td>Karina Vega</td>
+          <td>Introducción a la Economía</td>
+          <td>4.0</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Luis Ramírez" data-subject="Economía Política" data-rating="4.2">
+          <td>Luis Ramírez</td>
+          <td>Economía Política</td>
+          <td>4.2</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Mariana Gómez" data-subject="Administración" data-rating="4.1">
+          <td>Mariana Gómez</td>
+          <td>Administración</td>
+          <td>4.1</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Nicolás Herrera" data-subject="Contabilidad Básica" data-rating="3.8">
+          <td>Nicolás Herrera</td>
+          <td>Contabilidad Básica</td>
+          <td>3.8</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Olivia Paredes" data-subject="Matemática I" data-rating="4.5">
+          <td>Olivia Paredes</td>
+          <td>Matemática I</td>
+          <td>4.5</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Pablo Mendoza" data-subject="Taller de Herramientas Informáticas" data-rating="4.0">
+          <td>Pablo Mendoza</td>
+          <td>Taller de Herramientas Informáticas</td>
+          <td>4.0</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Queralt Blanco" data-subject="Introducción a la Economía" data-rating="3.9">
+          <td>Queralt Blanco</td>
+          <td>Introducción a la Economía</td>
+          <td>3.9</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Raúl Fuentes" data-subject="Economía Política" data-rating="4.1">
+          <td>Raúl Fuentes</td>
+          <td>Economía Política</td>
+          <td>4.1</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Sandra Ortiz" data-subject="Administración" data-rating="4.3">
+          <td>Sandra Ortiz</td>
+          <td>Administración</td>
+          <td>4.3</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Tomás Núñez" data-subject="Contabilidad Básica" data-rating="3.7">
+          <td>Tomás Núñez</td>
+          <td>Contabilidad Básica</td>
+          <td>3.7</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Úrsula Silva" data-subject="Matemática I" data-rating="4.4">
+          <td>Úrsula Silva</td>
+          <td>Matemática I</td>
+          <td>4.4</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Víctor Ramírez" data-subject="Taller de Herramientas Informáticas" data-rating="3.9">
+          <td>Víctor Ramírez</td>
+          <td>Taller de Herramientas Informáticas</td>
+          <td>3.9</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Wendy Castillo" data-subject="Introducción a la Economía" data-rating="4.0">
+          <td>Wendy Castillo</td>
+          <td>Introducción a la Economía</td>
+          <td>4.0</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Xavier Rojas" data-subject="Economía Política" data-rating="4.2">
+          <td>Xavier Rojas</td>
+          <td>Economía Política</td>
+          <td>4.2</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Yolanda Pérez" data-subject="Administración" data-rating="4.1">
+          <td>Yolanda Pérez</td>
+          <td>Administración</td>
+          <td>4.1</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Zacarías Vega" data-subject="Contabilidad Básica" data-rating="3.8">
+          <td>Zacarías Vega</td>
+          <td>Contabilidad Básica</td>
+          <td>3.8</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <!-- 30 más para completar 61 -->
+        <tr data-name="Adrián López" data-subject="Matemática I" data-rating="4.5">
+          <td>Adrián López</td>
+          <td>Matemática I</td>
+          <td>4.5</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Beatriz Morales" data-subject="Taller de Herramientas Informáticas" data-rating="4.0">
+          <td>Beatriz Morales</td>
+          <td>Taller de Herramientas Informáticas</td>
+          <td>4.0</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Carlos Herrera" data-subject="Introducción a la Economía" data-rating="3.9">
+          <td>Carlos Herrera</td>
+          <td>Introducción a la Economía</td>
+          <td>3.9</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Daniela Vásquez" data-subject="Economía Política" data-rating="4.1">
+          <td>Daniela Vásquez</td>
+          <td>Economía Política</td>
+          <td>4.1</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Eduardo Sánchez" data-subject="Administración" data-rating="4.3">
+          <td>Eduardo Sánchez</td>
+          <td>Administración</td>
+          <td>4.3</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Fabiana Cruz" data-subject="Contabilidad Básica" data-rating="3.7">
+          <td>Fabiana Cruz</td>
+          <td>Contabilidad Básica</td>
+          <td>3.7</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Gonzalo Paredes" data-subject="Matemática I" data-rating="4.4">
+          <td>Gonzalo Paredes</td>
+          <td>Matemática I</td>
+          <td>4.4</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Helena Cruz" data-subject="Taller de Herramientas Informáticas" data-rating="3.9">
+          <td>Helena Cruz</td>
+          <td>Taller de Herramientas Informáticas</td>
+          <td>3.9</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Iván López" data-subject="Introducción a la Economía" data-rating="4.0">
+          <td>Iván López</td>
+          <td>Introducción a la Economía</td>
+          <td>4.0</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Julia Morales" data-subject="Economía Política" data-rating="4.2">
+          <td>Julia Morales</td>
+          <td>Economía Política</td>
+          <td>4.2</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Kevin Sánchez" data-subject="Administración" data-rating="4.1">
+          <td>Kevin Sánchez</td>
+          <td>Administración</td>
+          <td>4.1</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Laura Reyes" data-subject="Contabilidad Básica" data-rating="3.8">
+          <td>Laura Reyes</td>
+          <td>Contabilidad Básica</td>
+          <td>3.8</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Marcos Díaz" data-subject="Matemática I" data-rating="4.5">
+          <td>Marcos Díaz</td>
+          <td>Matemática I</td>
+          <td>4.5</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Natalia Gómez" data-subject="Taller de Herramientas Informáticas" data-rating="4.0">
+          <td>Natalia Gómez</td>
+          <td>Taller de Herramientas Informáticas</td>
+          <td>4.0</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Oscar Ramírez" data-subject="Introducción a la Economía" data-rating="3.9">
+          <td>Oscar Ramírez</td>
+          <td>Introducción a la Economía</td>
+          <td>3.9</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Paula Mendoza" data-subject="Economía Política" data-rating="4.1">
+          <td>Paula Mendoza</td>
+          <td>Economía Política</td>
+          <td>4.1</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Ricardo Peña" data-subject="Administración" data-rating="4.3">
+          <td>Ricardo Peña</td>
+          <td>Administración</td>
+          <td>4.3</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Sofía López" data-subject="Contabilidad Básica" data-rating="3.7">
+          <td>Sofía López</td>
+          <td>Contabilidad Básica</td>
+          <td>3.7</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Tomás Castillo" data-subject="Matemática I" data-rating="4.4">
+          <td>Tomás Castillo</td>
+          <td>Matemática I</td>
+          <td>4.4</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Valentina Vega" data-subject="Taller de Herramientas Informáticas" data-rating="3.9">
+          <td>Valentina Vega</td>
+          <td>Taller de Herramientas Informáticas</td>
+          <td>3.9</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Walter Díaz" data-subject="Introducción a la Economía" data-rating="4.0">
+          <td>Walter Díaz</td>
+          <td>Introducción a la Economía</td>
+          <td>4.0</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Ximena Campos" data-subject="Economía Política" data-rating="4.2">
+          <td>Ximena Campos</td>
+          <td>Economía Política</td>
+          <td>4.2</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Yahir Mendoza" data-subject="Administración" data-rating="4.1">
+          <td>Yahir Mendoza</td>
+          <td>Administración</td>
+          <td>4.1</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+        <tr data-name="Zoe Ramírez" data-subject="Contabilidad Básica" data-rating="3.8">
+          <td>Zoe Ramírez</td>
+          <td>Contabilidad Básica</td>
+          <td>3.8</td>
+          <td><button class="viewBtn">Ver Perfil</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ======= Modal para mostrar perfil de profesor ======= -->
+  <div id="profileModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" id="closeModal">×</span>
+      <h2 id="modalName">Nombre del Profesor</h2>
+      <p id="modalSubject">Materias:</p>
+      <p id="modalRating">Calificación:</p>
+      <hr style="margin: 10px 0;" />
+      <p id="modalBio">Biografía breve del profesor.</p>
+    </div>
+  </div>
+
+  <!-- ======= FOOTER ======= -->
+  <footer id="contactSection">
+    <p>© 2025 Ranking de Profesores • Desarrollado con ❤️ por el CECE</p>
+    <p>
+      <a href="#">Términos y Condiciones</a> |
+      <a href="#">Política de Privacidad</a> |
+      <a href="mailto:contacto@cece.edu.ar">contacto@cece.edu.ar</a>
+    </p>
+  </footer>
+
+  <!-- ===========================
+       JavaScript para interactividad
+  =========================== -->
+  <script>
+    // Menú móvil toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navList = document.getElementById('navList');
+    menuToggle.addEventListener('click', () => {
+      navList.classList.toggle('open');
+    });
+
+    // Filtros y búsqueda en tabla
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const subjectFilter = document.getElementById('subjectFilter');
+    const ratingSort = document.getElementById('ratingSort');
+    const table = document.getElementById('profTable').getElementsByTagName('tbody')[0];
+
+    function applyFilters() {
+      const searchText = searchInput.value.toLowerCase();
+      const selectedSubject = subjectFilter.value.toLowerCase();
+      const sortOrder = ratingSort.value;
+
+      // Convertir filas a array para filtrar y ordenar
+      const rows = Array.from(table.rows);
+      let filtered = rows.filter(row => {
+        const name = row.getAttribute('data-name').toLowerCase();
+        const subject = row.getAttribute('data-subject').toLowerCase();
+        return (
+          (name.includes(searchText)) &&
+          (selectedSubject === '' || subject.includes(selectedSubject))
+        );
+      });
+
+      if (sortOrder) {
+        filtered.sort((a, b) => {
+          const ratingA = parseFloat(a.getAttribute('data-rating')) || 0;
+          const ratingB = parseFloat(b.getAttribute('data-rating')) || 0;
+          return sortOrder === 'desc' ? ratingB - ratingA : ratingA - ratingB;
+        });
+      }
+
+      // Limpiar y reinsertar filas
+      table.innerHTML = '';
+      filtered.forEach(row => table.appendChild(row));
+    }
+
+    searchBtn.addEventListener('click', applyFilters);
+    subjectFilter.addEventListener('change', applyFilters);
+    ratingSort.addEventListener('change', applyFilters);
+    searchInput.addEventListener('keyup', event => {
+      if (event.key === 'Enter') applyFilters();
+    });
+
+    // Modal de perfil
+    const modal = document.getElementById('profileModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const modalName = document.getElementById('modalName');
+    const modalSubject = document.getElementById('modalSubject');
+    const modalRating = document.getElementById('modalRating');
+    const modalBio = document.getElementById('modalBio');
+    const viewButtons = document.getElementsByClassName('viewBtn');
+
+    Array.from(viewButtons).forEach(button => {
+      button.addEventListener('click', () => {
+        const row = button.closest('tr');
+        const name = row.getAttribute('data-name');
+        const subject = row.getAttribute('data-subject');
+        const rating = row.getAttribute('data-rating');
+        modalName.textContent = name;
+        modalSubject.textContent = `Materias: ${subject}`;
+        modalRating.textContent = `Calificación: ${rating}`;
+        modalBio.textContent = `El profesor ${name} dicta la materia(s) de ${subject}. Tiene una valoración promedio de ${rating}.`;
+        modal.style.display = 'flex';
+      });
+    });
+
+    closeModalBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+    window.addEventListener('click', event => { if (event.target === modal) modal.style.display = 'none'; });
+  </script>
+</body>
+</html>

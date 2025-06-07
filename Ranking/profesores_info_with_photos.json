@@ -1,0 +1,368 @@
+[
+  {
+    "nombre":"ABRAHAM CLAUDIA CRISTINA",
+    "materia":"Administración",
+    "comision":"Comisión 1, Comisión 2",
+    "foto_url":"Fotos_profesores\/ABRAHAM CLAUDIA CRISTINA.jpg"
+  },
+  {
+    "nombre":"ALPA VIRGINIA ELISABET",
+    "materia":"Matemática I",
+    "comision":"Comisión 3",
+    "foto_url":"Fotos_profesores\/ALPA VIRGINIA ELISABET.png"
+  },
+  {
+    "nombre":"ALVAREZ MARIA BELEN",
+    "materia":"Administración",
+    "comision":"Comisión 2",
+    "foto_url":"Fotos_profesores\/ALVAREZ MARIA BELEN.jpg"
+  },
+  {
+    "nombre":"BASSINI TELLO GUIDO",
+    "materia":"Taller de Herramientas Informáticas",
+    "comision":"Comisión 6",
+    "foto_url":"Fotos_profesores\/BASSINI TELLO GUIDO.png"
+  },
+  {
+    "nombre":"BAZTERRICA VERÓNICA",
+    "materia":"Introducción a la Economía",
+    "comision":"Comisión 3",
+    "foto_url":"Fotos_profesores\/BAZTERRICA VERαNICA.jpg"
+  },
+  {
+    "nombre":"BILBAO LUCIANA MACARENA",
+    "materia":"Introducción a la Economía",
+    "comision":"Comisión 2",
+    "foto_url":"Fotos_profesores\/BILBAO LUCIANA MACARENA.jpg"
+  },
+  {
+    "nombre":"CAGIGAS LUCIANO ANDRÉS",
+    "materia":"Introducción a la Economía",
+    "comision":"Comisión 1, Comisión 2",
+    "foto_url":"Fotos_profesores\/CAGIGAS LUCIANO ANDRÉS.png"
+  },
+  {
+    "nombre":"CALVENTO JUAN",
+    "materia":"Taller de Herramientas Informáticas",
+    "comision":"Comisión 1",
+    "foto_url":"Fotos_profesores\/CALVENTO JUAN.jpg"
+  },
+  {
+    "nombre":"CARATTOLI MARIELA",
+    "materia":"Administración",
+    "comision":"Comisión 1, Comisión 2, Comisión 4, Comisión 5",
+    "foto_url":"Fotos_profesores\/CARATTOLI MARIELA.jpg"
+  },
+  {
+    "nombre":"CASCO MIRIAM MARÍA ROSA",
+    "materia":"Taller Habilidades I",
+    "comision":"Comisión 2, Comisión 4, Comisión 5, Comisión 6",
+    "foto_url":"Fotos_profesores\/CASCO MIRIAM MAR╓A ROSA.png"
+  },
+  {
+    "nombre":"COLELLO LORENA",
+    "materia":"Taller Habilidades I",
+    "comision":"Comisión 4",
+    "foto_url":"Fotos_profesores\/COLELLO LORENA.png"
+  },
+  {
+    "nombre":"CORRAL SILVIA",
+    "materia":"Administración",
+    "comision":"Comisión 5",
+    "foto_url":"Fotos_profesores\/CORRAL SILVIA.jpg"
+  },
+  {
+    "nombre":"DABIDOS MERCEDES",
+    "materia":"Derecho Público",
+    "comision":"Comisión 4",
+    "foto_url":"Fotos_profesores\/DABIDOS MERCEDES.jpg"
+  },
+  {
+    "nombre":"DE LORENZO LUCIA",
+    "materia":"Introducción a la Economía",
+    "comision":"Comisión 1, Comisión 5",
+    "foto_url":"Fotos_profesores\/DE LORENZO LUCIA.png"
+  },
+  {
+    "nombre":"DE VITO MARIA FLORENCIA",
+    "materia":"Matemática I",
+    "comision":"Comisión 5",
+    "foto_url":"Fotos_profesores\/DE VITO MARIA FLORENCIA.jpg"
+  },
+  {
+    "nombre":"DELGADO MAGALI LEDY",
+    "materia":"Historia Económica",
+    "comision":"Comisión 1, Comisión 4",
+    "foto_url":"Fotos_profesores\/DELGADO MAGALI LEDY.jpg"
+  },
+  {
+    "nombre":"DOMINGUEZ GRACIELA",
+    "materia":"Derecho Público",
+    "comision":"Comisión 6",
+    "foto_url":"Fotos_profesores\/DOMINGUEZ GRACIELA.jpg"
+  },
+  {
+    "nombre":"DOS REIS MARIA ROSA",
+    "materia":"Estadística, Taller de Herramientas Informáticas",
+    "comision":"Comisión 1, Comisión 3, Comisión 4, Comisión 6",
+    "foto_url":"Fotos_profesores\/DOS REIS MARIA ROSA.jpg"
+  },
+  {
+    "nombre":"DRUETTO LAURA C.",
+    "materia":"Matemática I",
+    "comision":"Comisión 1, Comisión 2, Comisión 3, Comisión 5",
+    "foto_url":"Fotos_profesores\/DRUETTO LAURA C..jpg"
+  },
+  {
+    "nombre":"ECHARRI ANA MARIA",
+    "materia":"Contabilidad Básica",
+    "comision":"Comisión 3",
+    "foto_url":"Fotos_profesores\/ECHARRI ANA MARIA.jpg"
+  },
+  {
+    "nombre":"ETCHEVERRIA SILVINA GRACIELA",
+    "materia":"Estadística",
+    "comision":"Comisión 1, Comisión 2, Comisión 3, Comisión 6",
+    "foto_url":"Fotos_profesores\/ETCHEVERRIA SILVINA GRACIELA.jpg"
+  },
+  {
+    "nombre":"GARCIA ITHURRART MARIANO",
+    "materia":"Administración",
+    "comision":"Comisión 1",
+    "foto_url":"Fotos_profesores\/GARCIA ITHURRART MARIANO.png"
+  },
+  {
+    "nombre":"GERINGER MARIA VALERIA",
+    "materia":"Contabilidad Básica",
+    "comision":"Comisión 4",
+    "foto_url":"Fotos_profesores\/GERINGER MARIA VALERIA.png"
+  },
+  {
+    "nombre":"GUTIERREZ SERGIO GUSTAVO",
+    "materia":"Introducción a la Economía",
+    "comision":"Comisión 1, Comisión 2, Comisión 3, Comisión 5",
+    "foto_url":"Fotos_profesores\/GUTIERREZ SERGIO GUSTAVO.png"
+  },
+  {
+    "nombre":"ISERN ANDREA NATALIA",
+    "materia":"Taller Habilidades I",
+    "comision":"Comisión 6",
+    "foto_url":"Fotos_profesores\/ISERN ANDREA NATALIA.jpg"
+  },
+  {
+    "nombre":"LA BARBERA FIORELLA ESTEFANIA",
+    "materia":"Contabilidad Básica",
+    "comision":"Comisión 6",
+    "foto_url":"Fotos_profesores\/LA BARBERA FIORELLA ESTEFANIA.jpg"
+  },
+  {
+    "nombre":"LAFOURCADE PAULA",
+    "materia":"Derecho Público",
+    "comision":"Comisión 1",
+    "foto_url":"Fotos_profesores\/LAFOURCADE PAULA.jpg"
+  },
+  {
+    "nombre":"LIEVORE LEANDRO EZEQUIEL",
+    "materia":"Estadística",
+    "comision":"Comisión 6",
+    "foto_url":"Fotos_profesores\/LIEVORE LEANDRO EZEQUIEL.jpg"
+  },
+  {
+    "nombre":"LOPEZ MADINA PATRICIO DAVID",
+    "materia":"Contabilidad Básica",
+    "comision":"Comisión 2, Comisión 3",
+    "foto_url":"Fotos_profesores\/LOPEZ MADINA PATRICIO DAVID.jpg"
+  },
+  {
+    "nombre":"LORENZO MARÍA NATALIA",
+    "materia":"Administración",
+    "comision":"Comisión 4",
+    "foto_url":"Fotos_profesores\/LORENZO MAR╓A NATALIA.jpg"
+  },
+  {
+    "nombre":"MARTINEFSKI MARIA INES",
+    "materia":"Contabilidad Básica",
+    "comision":"Comisión 1",
+    "foto_url":"Fotos_profesores\/MARTINEFSKI MARIA INES.jpg"
+  },
+  {
+    "nombre":"MARZORATTI MAURO",
+    "materia":"Derecho Público",
+    "comision":"Comisión 6",
+    "foto_url":"Fotos_profesores\/MARZORATTI MAURO.jpg"
+  },
+  {
+    "nombre":"MAUHOURAT MAGDALENA",
+    "materia":"Derecho Público",
+    "comision":"Comisión 1, Comisión 2",
+    "foto_url":"Fotos_profesores\/MAUHOURAT MAGDALENA.jpg"
+  },
+  {
+    "nombre":"MONDRAGON SILVINA ANDREA",
+    "materia":"Historia Económica",
+    "comision":"Comisión 5",
+    "foto_url":"Fotos_profesores\/MONDRAGON SILVINA ANDREA.jpg"
+  },
+  {
+    "nombre":"MONTELEONI JOSE IGNACIO",
+    "materia":"Taller de Herramientas Informáticas",
+    "comision":"Comisión 6",
+    "foto_url":"Fotos_profesores\/MONTELEONI JOSE IGNACIO.png"
+  },
+  {
+    "nombre":"MORANDO CARINA",
+    "materia":"Matemática I",
+    "comision":"Comisión 1",
+    "foto_url":"Fotos_profesores\/MORANDO CARINA.jpg"
+  },
+  {
+    "nombre":"MORENO MARIA MERCEDES",
+    "materia":"Administración",
+    "comision":"Comisión 5",
+    "foto_url":"Fotos_profesores\/MORENO MARIA MERCEDES.jpg"
+  },
+  {
+    "nombre":"MUSANTE GABRIELA SOLEDAD",
+    "materia":"Matemática I",
+    "comision":"Comisión 5",
+    "foto_url":"Fotos_profesores\/MUSANTE GABRIELA SOLEDAD.jpg"
+  },
+  {
+    "nombre":"NATALE MAURO",
+    "materia":"Matemática I",
+    "comision":"Comisión 2",
+    "foto_url":"Fotos_profesores\/NATALE MAURO.jpg"
+  },
+  {
+    "nombre":"PASUCCI JOSE ALBERTO",
+    "materia":"Historia Económica",
+    "comision":"Comisión 1, Comisión 2, Comisión 4, Comisión 5",
+    "foto_url":"Fotos_profesores\/PASUCCI JOSE ALBERTO.png"
+  },
+  {
+    "nombre":"PAZOS CECILIA ADRIANA",
+    "materia":"Derecho Público",
+    "comision":"Comisión 1, Comisión 2, Comisión 4, Comisión 6",
+    "foto_url":"Fotos_profesores\/PAZOS CECILIA ADRIANA.jpg"
+  },
+  {
+    "nombre":"PELIZZARDI FLAVIA PAOLA",
+    "materia":"Estadística",
+    "comision":"Comisión 2",
+    "foto_url":"Fotos_profesores\/PELIZZARDI FLAVIA PAOLA.jpg"
+  },
+  {
+    "nombre":"PEREZ CHIOZZA RAMIRO",
+    "materia":"Taller de Herramientas Informáticas",
+    "comision":"Comisión 3",
+    "foto_url":"Fotos_profesores\/PEREZ CHIOZZA RAMIRO.jpg"
+  },
+  {
+    "nombre":"PICABEA AGUSTIN",
+    "materia":"Introducción a la Economía",
+    "comision":"Comisión 3",
+    "foto_url":"Fotos_profesores\/PICABEA AGUSTIN.jpg"
+  },
+  {
+    "nombre":"PITTALUGA PATRICIO",
+    "materia":"Historia Económica",
+    "comision":"Comisión 1, Comisión 2",
+    "foto_url":"Fotos_profesores\/PITTALUGA PATRICIO.jpg"
+  },
+  {
+    "nombre":"PROVASI MARCOS RAUL",
+    "materia":"Contabilidad Básica",
+    "comision":"Comisión 1, Comisión 2",
+    "foto_url":"Fotos_profesores\/PROVASI MARCOS RAUL.jpg"
+  },
+  {
+    "nombre":"REBORI MARCELO ADRIAN",
+    "materia":"Administración",
+    "comision":"Comisión 5",
+    "foto_url":"Fotos_profesores\/REBORI MARCELO ADRIAN.jpg"
+  },
+  {
+    "nombre":"RINALDI EDUARDO",
+    "materia":"Estadística",
+    "comision":"Comisión 6",
+    "foto_url":"Fotos_profesores\/RINALDI EDUARDO.jpg"
+  },
+  {
+    "nombre":"RODRIGUEZ RIVERO GENARO",
+    "materia":"Contabilidad Básica",
+    "comision":"Comisión 6",
+    "foto_url":"Fotos_profesores\/RODRIGUEZ RIVERO GENARO.jpg"
+  },
+  {
+    "nombre":"RUSSO ALEJANDRA",
+    "materia":"Taller Habilidades I",
+    "comision":"Comisión 2, Comisión 5",
+    "foto_url":"Fotos_profesores\/RUSSO ALEJANDRA.jpg"
+  },
+  {
+    "nombre":"SANTAMARINA DELFINA",
+    "materia":"Estadística",
+    "comision":"Comisión 6",
+    "foto_url":"Fotos_profesores\/SANTAMARINA DELFINA.png"
+  },
+  {
+    "nombre":"SANTIAGO MATIAS",
+    "materia":"Contabilidad Básica",
+    "comision":"Comisión 4",
+    "foto_url":"Fotos_profesores\/SANTIAGO MATIAS.png"
+  },
+  {
+    "nombre":"SARACCA ARIEL ANDRES",
+    "materia":"Historia Económica",
+    "comision":"Comisión 2",
+    "foto_url":"Fotos_profesores\/SARACCA ARIEL ANDRES.png"
+  },
+  {
+    "nombre":"SEFFINO MARIO DANIEL",
+    "materia":"Estadística",
+    "comision":"Comisión 2",
+    "foto_url":"Fotos_profesores\/SEFFINO MARIO DANIEL.jpg"
+  },
+  {
+    "nombre":"SIMARO JORGE DANIEL",
+    "materia":"Contabilidad Básica",
+    "comision":"Comisión 1, Comisión 2, Comisión 3, Comisión 4, Comisión 6",
+    "foto_url":"Fotos_profesores\/SIMARO JORGE DANIEL.png"
+  },
+  {
+    "nombre":"TONELLI OMAR EDGARDO",
+    "materia":"Contabilidad Básica",
+    "comision":"Comisión 6",
+    "foto_url":"Fotos_profesores\/TONELLI OMAR EDGARDO.jpg"
+  },
+  {
+    "nombre":"VIERA MARIA INES",
+    "materia":"Contabilidad Básica",
+    "comision":"Comisión 2",
+    "foto_url":"Fotos_profesores\/VIERA MARIA INES.jpg"
+  },
+  {
+    "nombre":"VILLARREAL MARIA BELÉN",
+    "materia":"Matemática I",
+    "comision":"Comisión 2",
+    "foto_url":"Fotos_profesores\/VILLARREAL MARIA BELÉN.jpg"
+  },
+  {
+    "nombre":"VINSENNAU LAUTARO DANIEL",
+    "materia":"Administración",
+    "comision":"Comisión 4",
+    "foto_url":"Fotos_profesores\/VINSENNAU LAUTARO DANIEL.jpg"
+  },
+  {
+    "nombre":"ZARINI PEDRO CARLOS",
+    "materia":"Historia Económica",
+    "comision":"Comisión 5",
+    "foto_url":"Fotos_profesores\/ZARINI PEDRO CARLOS.jpg"
+  },
+  {
+    "nombre":"ZUBELDIA MARTÍN",
+    "materia":"Derecho Público",
+    "comision":"Comisión 4",
+    "foto_url":"Fotos_profesores\/ZUBELDIA MART╓N.jpg"
+  }
+]

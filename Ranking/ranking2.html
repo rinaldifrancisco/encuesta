@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ranking de Profesores</title>
+  
+  <!-- Fuente desde Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  
+   <style>
+    /* ===========================
+       Estilos Base y Reset
+    =========================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+     /* ===========================
+       Header y Navegación
+    =========================== */
+    header {
+      background: linear-gradient(135deg, #1a73e8 0%, #2b57d0 100%);
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* Menú horizontal (desktop) */
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
+    nav ul li a {
+      color: #fff;
+      font-weight: 500;
+      padding: 6px 8px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    nav ul li a:hover {
+      background: rgba(255,255,255,0.15);
+    }
+    }
+    /* ===========================
+       Header
+    =========================== */
+    header {
+      background: linear-gradient(135deg, #1a73e8 0%, #2b57d0 100%);
+      color: #fff;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: #fff;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    nav ul li a:hover {
+      opacity: 0.8;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ===========================
+       Barra de búsqueda / filtros
+    =========================== */
+    .filters-container {
+      margin: 20px auto;
+      max-width: 1000px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    .search-container {
+      flex: 2;
+      display: flex;
+      gap: 10px;
+    }
+    .search-container input[type="text"] {
+      flex: 1;
+      padding: 10px 15px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+    .search-container input[type="text"]:focus {
+      outline: none;
+      border-color: #1a73e8;
+    }
+    .search-container button {
+      padding: 0 20px;
+      background: #1a73e8;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .search-container button:hover {
+      background: #155ab3;
+    }
+    .filter-select {
+      flex: 1;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      background: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .filter-select:focus {
+      outline: none;
+      border-color: #1a73e8;
+    }
+
+    /* ===========================
+       Estilos para móviles (< 768px)
+    =========================== */
+    @media (max-width: 100px) {
+      .header-content {
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+      /* Mostrar botón hamburguesa */
+      .menu-toggle {
+        display: block;
+      }
+      /* Ocultar menú horizontal */
+      nav ul {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        background: #1a73e8;
+        position: absolute;
+        top: 56px; /* altura del header */
+        right: 0;
+        width: 100%;
+        border-top: 1px solid rgba(255,255,255,0.2);
+      }
+      /* Cada enlace ocupa todo el ancho en vertical */
+      nav ul li {
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+      }
+      nav ul li a {
+        display: block;
+        padding: 14px 20px;
+      }
+      /* Cuando tenga la clase .open, se muestra el menú */
+      nav ul.open {
+        display: flex;
+      }
+    }
+    /* ===========================
+       Barra de filtros
+    =========================== */
+    .filters-container {
+      margin: 20px auto;
+      max-width: 1000px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    .search-container {
+      flex: 2;
+      display: flex;
+      gap: 10px;
+    }
+    .search-container input[type="text"] {
+      flex: 1;
+      padding: 10px 15px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+    .search-container input[type="text"]:focus {
+      outline: none;
+      border-color: #1a73e8;
+    }
+    .search-container button {
+      padding: 0 20px;
+      background: #1a73e8;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .search-container button:hover { background: #155ab3; }
+    .filter-select {
+      flex: 1;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      background: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .filter-select:focus { outline: none; border-color: #1a73e8; }
+
+    /* ===========================
+       Tabla de comisiones
+    =========================== */
+    .table-container {
+      flex: 1;
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+    }
+    thead { background: #1a73e8; color: #fff; }
+    tbody tr:nth-child(even) { background: #f0f2f5; }
+    th { font-weight: 600; }
+    .viewBtn {
+      padding: 6px 12px;
+      background: #2b57d0;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-size: 0.9rem;
+    }
+    .viewBtn:hover { background: #1a3bb0; }
+
+    /* ===========================
+       Modal detalle
+    =========================== */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+    }
+    .modal-content {
+      background: #fff;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      padding: 20px;
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #555;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===========================
+       Footer
+    =========================== */
+    footer {
+      background: #1f2937;
+      color: #aaa;
+      text-align: center;
+      padding: 15px 20px;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+    footer a { color: #fff; font-weight: 500; margin: 0 5px; }
+
+    /* ===========================
+       Media Queries
+    =========================== */
+    @media (max-width: 800px) {
+      .filters-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .search-container, .filter-select { width: 100%; }
+    }
+    @media (max-width: 600px) {
+      header, .filters-container { padding: 15px 20px; }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background: #1a73e8;
+        position: absolute;
+        top: 60px;
+        right: 40px;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      nav ul.open { display: flex; }
+      .menu-toggle { display: block; color: #fff; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======= HEADER ======= -->
+  <header>
+    <div class="header-content">
+      <div class="logo">📚 CECE Comisiones</div>
+      <div class="menu-toggle" id="menuToggle">☰</div>
+      <nav>
+        <ul id="navList">
+          <li><a href="C:\Users\rinal\Desktop\Archivos Confidenciales\ranking\Ranking\index.html">Inicio</a></li>
+          <li><a href="C:\Users\rinal\Desktop\Archivos Confidenciales\ranking\Ranking\ranking.html">Ranking de profesores</a></li>
+          <li><a href="C:\Users\rinal\Desktop\Archivos Confidenciales\ranking\Ranking\ranking2.html">Ranking de comisiones</a></li>
+          <li><a href="#contactSection">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======= BARRA DE FILTROS ======= -->
+  <section class="filters-container">
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Buscar comisión..." />
+      <button id="searchBtn">Buscar</button>
+    </div>
+    <select id="subjectFilter" class="filter-select">
+      <option value="">Todas las materias</option>
+      <option value="Administración">Administración</option>
+      <option value="Contabilidad Básica">Contabilidad Básica</option>
+      <option value="Historia Económica">Historia Económica</option>
+      <option value="Instituciones de Derecho Público">Instituciones de Derecho Público</option>
+      <option value="Introducción a la Economía">Introducción a la Economía</option>
+      <option value="Matemática I">Matemática I</option>
+      <option value="Estadística">Estadística</option>
+      <option value="Taller de Desarrollo de Habilidades I">Taller de Desarrollo de Habilidades I</option>
+      <option value="Taller de Desarrollo de Habilidades II">Taller de Desarrollo de Habilidades II</option>
+      <option value="Taller de Herramientas Informáticas">Taller de Herramientas Informáticas</option>
+    </select>
+    <select id="professorFilter" class="filter-select">
+      <option value="">Todos los profesores</option>
+      <option value="Ana García">Ana García</option>
+      <option value="Bruno López">Bruno López</option>
+      <option value="Carla Martínez">Carla Martínez</option>
+      <option value="Diego Fernández">Diego Fernández</option>
+      <option value="Elena Ruiz">Elena Ruiz</option>
+      <option value="Francisco Díaz">Francisco Díaz</option>
+      <option value="Gabriela Torres">Gabriela Torres</option>
+      <option value="Hugo Morales">Hugo Morales</option>
+      <option value="Isabel Sánchez">Isabel Sánchez</option>
+      <option value="Javier Castro">Javier Castro</option>
+      <option value="Karina Vega">Karina Vega</option>
+      <option value="Luis Ramírez">Luis Ramírez</option>
+      <option value="Mariana Gómez">Mariana Gómez</option>
+      <option value="Nicolás Herrera">Nicolás Herrera</option>
+      <option value="Olivia Paredes">Olivia Paredes</option>
+      <option value="Pablo Mendoza">Pablo Mendoza</option>
+      <option value="Queralt Blanco">Queralt Blanco</option>
+      <option value="Raúl Fuentes">Raúl Fuentes</option>
+      <option value="Sandra Ortiz">Sandra Ortiz</option>
+      <option value="Tomás Núñez">Tomás Núñez</option>
+      <option value="Úrsula Silva">Úrsula Silva</option>
+      <option value="Víctor Ramírez">Víctor Ramírez</option>
+      <option value="Wendy Castillo">Wendy Castillo</option>
+      <option value="Xavier Rojas">Xavier Rojas</option>
+      <option value="Yolanda Pérez">Yolanda Pérez</option>
+      <option value="Zacarías Vega">Zacarías Vega</option>
+      <option value="Adrián López">Adrián López</option>
+      <option value="Beatriz Morales">Beatriz Morales</option>
+      <option value="Carlos Herrera">Carlos Herrera</option>
+      <option value="Daniela Vásquez">Daniela Vásquez</option>
+      <option value="Eduardo Sánchez">Eduardo Sánchez</option>
+      <option value="Fabiana Cruz">Fabiana Cruz</option>
+      <option value="Gonzalo Paredes">Gonzalo Paredes</option>
+      <option value="Helena Cruz">Helena Cruz</option>
+      <option value="Iván López">Iván López</option>
+      <option value="Julia Morales">Julia Morales</option>
+      <option value="Kevin Sánchez">Kevin Sánchez</option>
+      <option value="Laura Reyes">Laura Reyes</option>
+      <option value="Marcos Díaz">Marcos Díaz</option>
+      <option value="Natalia Gómez">Natalia Gómez</option>
+      <option value="Oscar Ramírez">Oscar Ramírez</option>
+      <option value="Paula Mendoza">Paula Mendoza</option>
+      <option value="Ricardo Peña">Ricardo Peña</option>
+      <option value="Sofía López">Sofía López</option>
+      <option value="Tomás Castillo">Tomás Castillo</option>
+      <option value="Valentina Vega">Valentina Vega</option>
+      <option value="Walter Díaz">Walter Díaz</option>
+      <option value="Ximena Campos">Ximena Campos</option>
+      <option value="Yahir Mendoza">Yahir Mendoza</option>
+      <option value="Zoe Ramírez">Zoe Ramírez</option>
+    </select>
+    <select id="scoreSort" class="filter-select">
+      <option value="">Ordenar por puntuación</option>
+      <option value="desc">Mejor primero</option>
+      <option value="asc">Peor primero</option>
+    </select>
+  </section>
+
+  <!-- ======= TABLA DE COMISIONES ======= -->
+  <section id="commissionsSection" class="table-container">
+    <table id="commTable">
+      <thead>
+        <tr>
+          <th>Comisión</th>
+          <th>Materia</th>
+          <th>Profesor</th>
+          <th>Horario</th>
+          <th>Puntuación</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Filas ordenadas inicialmente por puntuación descendente -->
+        <tr data-commission="Comisión 701" data-subject="Administración" data-professor="Mariana Gómez" data-time="18:00" data-score="4.9">
+          <td>Comisión 701</td>
+          <td>Administración</td>
+          <td>Mariana Gómez</td>
+          <td>18:00 – 20:00</td>
+          <td>4.9</td>
+          <td><button class="viewBtn">Ver Detalle</button></td>
+        </tr>
+        <tr data-commission="Comisión 902" data-subject="Matemática I" data-professor="Úrsula Silva" data-time="16:00" data-score="4.8">
+          <td>Comisión 902</td>
+          <td>Matemática I</td>
+          <td>Úrsula Silva</td>
+          <td>16:00 – 18:00</td>
+          <td>4.8</td>
+          <td><button class="viewBtn">Ver Detalle</button></td>
+        </tr>
+        <tr data-commission="Comisión 301" data-subject="Matemática I" data-professor="Carla Martínez" data-time="10:00" data-score="4.7">
+          <td>Comisión 301</td>
+          <td>Matemática I</td>
+          <td>Carla Martínez</td>
+          <td>10:00 – 12:00</td>
+          <td>4.7</td>
+          <td><button class="viewBtn">Ver Detalle</button></td>
+        </tr>
+        <tr data-commission="Comisión 101" data-subject="Administración" data-professor="Ana García" data-time="08:00" data-score="4.6">
+          <td>Comisión 101</td>
+          <td>Administración</td>
+          <td>Ana García</td>
+          <td>08:00 – 10:00</td>
+          <td>4.6</td>
+          <td><button class="viewBtn">Ver Detalle</button></td>
+        </tr>
+        <tr data-commission="Comisión 801" data-subject="Contabilidad Básica" data-professor="Nicolás Herrera" data-time="10:00" data-score="4.5">
+          <td>Comisión 801</td>
+          <td>Contabilidad Básica</td>
+          <td>Nicolás Herrera</td>
+          <td>10:00 – 12:00</td>
+          <td>4.5</td>
+          <td><button class="viewBtn">Ver Detalle</button></td>
+        </tr>
+        <tr data-commission="Comisión 501" data-subject="Introducción a la Economía" data-professor="Elena Ruiz" data-time="08:00" data-score="4.4">
+          <td>Comisión 501</td>
+          <td>Introducción a la Economía</td>
+          <td>Elena Ruiz</td>
+          <td>08:00 – 10:00</td>
+          <td>4.4</td>
+          <td><button class="viewBtn">Ver Detalle</button></td>
+        </tr>
+        <tr data-commission="Comisión 302" data-subject="Matemática I" data-professor="Isabel Sánchez" data-time="16:00" data-score="4.3">
+          <td>Comisión 302</td>
+          <td>Matemática I</td>
+          <td>Isabel Sánchez</td>
+          <td>16:00 – 18:00</td>
+          <td>4.3</td>
+          <td><button class="viewBtn">Ver Detalle</button></td>
+        </tr>
+        <tr data-commission="Comisión 102" data-subject="Administración" data-professor="Gabriela Torres" data-time="10:00" data-score="4.2">
+          <td>Comisión 102</td>
+          <td>Administración</td>
+          <td>Gabriela Torres</td>
+          <td>10:00 – 12:00</td>
+          <td>4.2</td>
+          <td><button class="viewBtn">Ver Detalle</button></td>
+        </tr>
+        <tr data-commission="Comisión 601" data-subject="Economía Política" data-professor="Francisco Díaz" data-time="14:00" data-score="4.1">
+          <td>Comisión 601</td>
+          <td>Economía Política</td>
+          <td>Francisco Díaz</td>
+          <td>14:00 – 16:00</td>
+          <td>4.1</td>
+          <td><button class="viewBtn">Ver Detalle</button></td>
+        </tr>
+        <tr data-commission="Comisión 201" data-subject="Contabilidad Básica" data-professor="Bruno López" data-time="08:00" data-score="4.0">
+          <td>Comisión 201</td>
+          <td>Contabilidad Básica</td>
+          <td>Bruno López</td>
+          <td>08:00 – 10:00</td>
+          <td>4.0</td>
+          <td><button class="viewBtn">Ver Detalle</button></td>
+        </tr>
+        <tr data-commission="Comisión 402" data-subject="Taller de Herramientas Informáticas" data-professor="Pablo Mendoza" data-time="18:00" data-score="3.9">
+          <td>Comisión 402</td>
+          <td>Taller de Herramientas Informáticas</td>
+          <td>Pablo Mendoza</td>
+          <td>18:00 – 20:00</td>
+          <td>3.9</td>
+          <td><button class="viewBtn">Ver Detalle</button></td>
+        </tr>
+        <tr data-commission="Comisión 202" data-subject="Contabilidad Básica" data-professor="Hugo Morales" data-time="14:00" data-score="3.8">
+          <td>Comisión 202</td>
+          <td>Contabilidad Básica</td>
+          <td>Hugo Morales</td>
+          <td>14:00 – 16:00</td>
+          <td>3.8</td>
+          <td><button class="viewBtn">Ver Detalle</button></td>
+        </tr>
+        <tr data-commission="Comisión 901" data-subject="Matemática I" data-professor="Olivia Paredes" data-time="14:00" data-score="3.7">
+          <td>Comisión 901</td>
+          <td>Matemática I</td>
+          <td>Olivia Paredes</td>
+          <td>14:00 – 16:00</td>
+          <td>3.7</td>
+          <td><button class="viewBtn">Ver Detalle</button></td>
+        </tr>
+        <tr data-commission="Comisión 502" data-subject="Introducción a la Economía" data-professor="Karina Vega" data-time="10:00" data-score="3.6">
+          <td>Comisión 502</td>
+          <td>Introducción a la Economía</td>
+          <td>Karina Vega</td>
+          <td>10:00 – 12:00</td>
+          <td>3.6</td>
+          <td><button class="viewBtn">Ver Detalle</button></td>
+        </tr>
+        <tr data-commission="Comisión 401" data-subject="Taller de Herramientas Informáticas" data-professor="Diego Fernández" data-time="12:00" data-score="3.5">
+          <td>Comisión 401</td>
+          <td>Taller de Herramientas Informáticas</td>
+          <td>Diego Fernández</td>
+          <td>12:00 – 14:00</td>
+          <td>3.5</td>
+          <td><button class="viewBtn">Ver Detalle</button></td>
+        </tr>
+        <tr data-commission="Comisión 802" data-subject="Contabilidad Básica" data-professor="Tomás Núñez" data-time="12:00" data-score="3.4">
+          <td>Comisión 802</td>
+          <td>Contabilidad Básica</td>
+          <td>Tomás Núñez</td>
+          <td>12:00 – 14:00</td>
+          <td>3.4</td>
+          <td><button class="viewBtn">Ver Detalle</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ======= Modal detalle de comisión ======= -->
+  <div id="commissionModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" id="closeModal">×</span>
+      <h2 id="modalComm">Comisión</h2>
+      <p id="modalSubj">Materia:</p>
+      <p id="modalProf">Profesor:</p>
+      <p id="modalTime">Horario:</p>
+      <p id="modalScore">Puntuación:</p>
+      <hr style="margin: 10px 0;" />
+      <p id="modalExtra">Aula y cupo: El aula asignada es la A-2 y el cupo máximo es de 50 estudiantes.</p>
+    </div>
+  </div>
+
+  <!-- ======= FOOTER ======= -->
+  <footer id="contactSection">
+    <p>© 2025 Ranking de Comisiones • Desarrollado con ❤️ por el CECE</p>
+    <p>
+      <a href="#">Términos y Condiciones</a> |
+      <a href="#">Política de Privacidad</a> |
+      <a href="mailto:contacto@cece.edu.ar">contacto@cece.edu.ar</a>
+    </p>
+  </footer>
+
+  <!-- ===========================
+       JavaScript para interactividad
+  =========================== -->
+  <script>
+    // Menú móvil toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navList = document.getElementById('navList');
+    menuToggle.addEventListener('click', () => {
+      navList.classList.toggle('open');
+    });
+
+    // Filtros y búsqueda en tabla de comisiones
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const subjectFilter = document.getElementById('subjectFilter');
+    const professorFilter = document.getElementById('professorFilter');
+    const scoreSort = document.getElementById('scoreSort');
+    const commTableBody = document.getElementById('commTable').getElementsByTagName('tbody')[0];
+
+    function applyFilters() {
+      const searchText = searchInput.value.toLowerCase();
+      const selectedSubject = subjectFilter.value.toLowerCase();
+      const selectedProfessor = professorFilter.value.toLowerCase();
+      const sortOrder = scoreSort.value;
+
+      let rows = Array.from(commTableBody.rows);
+      // Filtrar
+      let filtered = rows.filter(row => {
+        const commission = row.getAttribute('data-commission').toLowerCase();
+        const subject = row.getAttribute('data-subject').toLowerCase();
+        const professor = row.getAttribute('data-professor').toLowerCase();
+        return (
+          commission.includes(searchText) &&
+          (selectedSubject === '' || subject.includes(selectedSubject)) &&
+          (selectedProfessor === '' || professor.includes(selectedProfessor))
+        );
+      });
+      // Ordenar por puntuación si corresponde
+      if (sortOrder) {
+        filtered.sort((a, b) => {
+          const scoreA = parseFloat(a.getAttribute('data-score'));
+          const scoreB = parseFloat(b.getAttribute('data-score'));
+          return sortOrder === 'desc' ? scoreB - scoreA : scoreA - scoreB;
+        });
+      }
+      // Limpiar e insertar
+      commTableBody.innerHTML = '';
+      filtered.forEach(row => commTableBody.appendChild(row));
+    }
+
+    searchBtn.addEventListener('click', applyFilters);
+    subjectFilter.addEventListener('change', applyFilters);
+    professorFilter.addEventListener('change', applyFilters);
+    scoreSort.addEventListener('change', applyFilters);
+    searchInput.addEventListener('keyup', event => {
+      if (event.key === 'Enter') applyFilters();
+    });
+
+    // Modal detalle de comisión
+    const modal = document.getElementById('commissionModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const modalComm = document.getElementById('modalComm');
+    const modalSubj = document.getElementById('modalSubj');
+    const modalProf = document.getElementById('modalProf');
+    const modalTime = document.getElementById('modalTime');
+    const modalScore = document.getElementById('modalScore');
+    const modalExtra = document.getElementById('modalExtra');
+    const viewButtons = document.getElementsByClassName('viewBtn');
+
+    Array.from(viewButtons).forEach(button => {
+      button.addEventListener('click', () => {
+        const row = button.closest('tr');
+        const commission = row.getAttribute('data-commission');
+        const subject = row.getAttribute('data-subject');
+        const professor = row.getAttribute('data-professor');
+        const time = row.getAttribute('data-time');
+        const score = row.getAttribute('data-score');
+        modalComm.textContent = commission;
+        modalSubj.textContent = `Materia: ${subject}`;
+        modalProf.textContent = `Profesor: ${professor}`;
+        modalTime.textContent = `Horario: ${time}`;
+        modalScore.textContent = `Puntuación: ${score}`;
+        modalExtra.textContent = `Aula y cupo: El aula asignada es la A-2 y el cupo máximo es de 50 estudiantes.`;
+        modal.style.display = 'flex';
+      });
+    });
+
+    closeModalBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+    window.addEventListener('click', event => { if (event.target === modal) modal.style.display = 'none'; });
+  </script>
+</body>
+</html>
